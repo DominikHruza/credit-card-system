@@ -31,7 +31,7 @@ services:
       credit-cards-db:
         condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/credit-cards-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://credit-cards-db:5432/credit-cards-db
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
