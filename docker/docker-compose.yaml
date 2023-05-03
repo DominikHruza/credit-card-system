@@ -1,0 +1,38 @@
+version: "3.8"
+volumes:
+  credit-cards-db-postgres-data:
+services:
+  credit-cards-db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=credit-cards-db
+    ports:
+      - "5442:5432"
+    volumes:
+      - credit-cards-db-postgres-data:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./db/credit-cards-db.sql:/docker-entrypoint-initdb.d/credit-cards-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d credit-cards-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  credit-card-application-api:
+    build:
+      context: ../credit-card-application-api
+      dockerfile: Dockerfile
+    ports:
+      - target: 8080
+        published: 8080
+    depends_on:
+      credit-cards-db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/credit-cards-db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+
