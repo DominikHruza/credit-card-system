@@ -20,19 +20,19 @@ services:
       timeout: 5s
       retries: 5
 
-  credit-card-application-api:
-    build:
-      context: ../credit-card-application-api
-      dockerfile: Dockerfile
-    ports:
-      - target: 8080
-        published: 8080
-    depends_on:
-      credit-cards-db:
-        condition: service_healthy
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://credit-cards-db:5432/credit-cards-db
-      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
-      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+#  credit-card-application-api:
+#    build:
+#      context: ../credit-card-application-api
+#      dockerfile: Dockerfile
+#    ports:
+#      - target: 8080
+#        published: 8080
+#    depends_on:
+#      credit-cards-db:
+#        condition: service_healthy
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://credit-cards-db:5432/credit-cards-db
+#      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+#      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
 

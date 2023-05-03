@@ -15,8 +15,12 @@ CREATE TABLE applicants (
 CREATE TABLE application_file (
     id SERIAL PRIMARY KEY,
     location_url TEXT NOT NULL,
-    is_active BOOLEAN,
+    file_status_id INTEGER NOT NULL,
     applicant_id INTEGER NOT NULL,
     FOREIGN KEY (applicant_id) REFERENCES applicants (id),
+    FOREIGN KEY (file_status_id) REFERENCES application_statuses (id),
     UNIQUE(applicant_id)
 );
+
+INSERT INTO application_statuses (name) VALUES ('ACTIVE');
+INSERT INTO application_statuses (name) VALUES ('INACTIVE');
