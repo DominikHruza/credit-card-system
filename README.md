@@ -45,6 +45,8 @@ Password: postgres
 
 This service runs the Credit Card Application API with default configs:
 
+It is implemented using Spring Boot 2 and Spring 5 framework
+
 - Ports: Exposes port `8080`.
 - Environment Variables:
     - `SPRING_DATASOURCE_URL`: JDBC URL for the PostgreSQL database.
