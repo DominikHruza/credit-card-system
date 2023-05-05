@@ -8,6 +8,10 @@
 
 1. Start the services:
 
+   After cloning the project: 
+    ```
+   cd docker
+   ```
    ```
    docker-compose up -d
    ```
