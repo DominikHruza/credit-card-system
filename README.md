@@ -29,7 +29,7 @@
 3. Access the Swagger documentation:
 
    ```
-   http://localhost:8080/swagger-ui/index.html#/
+   http://localhost:8080/swagger-ui/index.html
    ```
 
    This URL will take you to the Swagger documentation for the Credit Card Application API, where you can explore and test the available endpoints.
