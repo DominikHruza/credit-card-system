@@ -9,17 +9,17 @@ CREATE TABLE applicants (
     lastname VARCHAR(255) NOT NULL,
     oib VARCHAR(11) NOT NULL,
     status_id INTEGER NOT NULL,
-    FOREIGN KEY (status_id) REFERENCES application_statuses (id)
+    FOREIGN KEY (status_id) REFERENCES application_statuses (id),
+    UNIQUE (oib)
 );
 
 CREATE TABLE application_file (
     id SERIAL PRIMARY KEY,
     location_url TEXT NOT NULL,
     file_status_id INTEGER NOT NULL,
-    applicant_id INTEGER NOT NULL,
+    applicant_id INTEGER,
     FOREIGN KEY (applicant_id) REFERENCES applicants (id),
-    FOREIGN KEY (file_status_id) REFERENCES application_statuses (id),
-    UNIQUE(applicant_id)
+    FOREIGN KEY (file_status_id) REFERENCES application_statuses (id)
 );
 
 INSERT INTO application_statuses (name) VALUES ('ACTIVE');

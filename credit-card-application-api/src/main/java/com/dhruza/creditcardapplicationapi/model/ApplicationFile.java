@@ -1,14 +1,16 @@
 package com.dhruza.creditcardapplicationapi.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "application_files")
+@Table(name = "application_file")
 public class ApplicationFile {
 
     @Id
@@ -17,11 +19,11 @@ public class ApplicationFile {
 
     private String locationUrl;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "file_status_id")
     private ApplicationStatus fileStatus;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
 

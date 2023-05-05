@@ -26,8 +26,9 @@ public class Applicant {
     @JoinColumn(name = "status_id")
     private ApplicationStatus status;
 
-    @OneToOne(mappedBy = "applicant")
-    private ApplicationFile applicationFile;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "applicant_id")
+    private Set<ApplicationFile> applicationFiles = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

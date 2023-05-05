@@ -3,10 +3,6 @@ package com.dhruza.creditcardapplicationapi.dto.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StatusTypePatternValidator implements ConstraintValidator<ValidStatusType, CharSequence> {
@@ -16,7 +12,7 @@ public class StatusTypePatternValidator implements ConstraintValidator<ValidStat
     public void initialize(ValidStatusType annotation) {
         acceptedValues = Stream.of(annotation.enumClass().getEnumConstants())
                 .map(Enum::name)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

@@ -23,19 +23,12 @@ public class ControllerLoggingAdvice {
     public Object controllerLogger(ProceedingJoinPoint pjp) throws Throwable {
         HttpServletRequest request = getHttpServletRequest();
 
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
         ObjectMapper om = new ObjectMapper();
         String methodName = pjp.getSignature().getName();
         String className = pjp.getTarget().getClass().toString();
         Object[] args = pjp.getArgs();
 
         log.info("Resource " + request.getRequestURI() + " requested");
-//                "requested by user, " + currentPrincipalName +
-//                "(" + om.writeValueAsString(authorities) + ")");
-
         log.info("Invoked " + className + " : " + methodName + " : " + "args : " + om.writeValueAsString(args));
 
         Object result = pjp.proceed();
